@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <title>Fabrikey - Checkout</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="paymentBrick_container"></div>
+      <div class="plan">
+        <div class="plan__header">
+          <h1 id="plan-reason"></h1>
+        </div>
+        <div class="plan__main">
+          <div class="d-flex justify-between">
+            <span>Desconto</span>
+            <span id="discount">R$ 0,00</span>
+          </div>
+          <div class="d-flex justify-between">
+            <span>Subtotal</span>
+            <span id="plan-subtotal"></span>
+          </div>
+        </div>
+        <div id="total" class="d-flex justify-between">
+          <h1>Total</h1>
+          <h1 id="plan-total"></h1>
+        </div>
+      </div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>
