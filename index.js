@@ -1,7 +1,11 @@
+import Toast from "./classes/Toast/Toast.js";
+
 const mp = new MercadoPago('APP_USR-12d59ee5-ac63-44b5-945c-80b64b07bfaf', {
   locale: 'pt'
 });
 const bricksBuilder = mp.bricks();
+
+const toast = new Toast(11000);
 
 const page = {
   async init() {
@@ -106,19 +110,25 @@ const page = {
             }
 
             console.log(data.response.is_error)
-
             console.log(data);
 
             window.location.href = `https://fk-3146878.bubbleapps.io/version-test/assinatura_sucesso?preapproval_plan_id=${this.preapproval_plan_id}`;
 
           } catch (error) {
-            console.error(error)
+            toast.error("Erro ao fazer a compra. Entre em contato com o suporte.");
+            console.error(error);
+
+            setTimeout(() => {
+              window.location.href = 'https://fk-3146878.bubbleapps.io/version-test';
+            }, 11000)
           }
         },
         onError: (error) => {
+          console.log("deu erro");
           console.error(error);
         },
       },
+
     };
     window.paymentBrickController = await bricksBuilder.create(
       "payment",
