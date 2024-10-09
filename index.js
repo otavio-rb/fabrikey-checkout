@@ -30,9 +30,12 @@ const page = {
       const plan = json.response.plan;
       this.planName = json.response.plan._api_c2_reason;
 
+      document.querySelector(".plan").style.display = "flex";
+      
       document.querySelector("#plan-reason").innerText = this.planName;
       document.querySelector("#plan-subtotal").innerText = plan["_api_c2_auto_recurring.transaction_amount"].toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
       document.querySelector("#plan-total").innerText = plan["_api_c2_auto_recurring.transaction_amount"].toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+
 
       console.log(json.response.plan)
 
@@ -130,6 +133,7 @@ const page = {
       },
 
     };
+
     window.paymentBrickController = await bricksBuilder.create(
       "payment",
       "paymentBrick_container",

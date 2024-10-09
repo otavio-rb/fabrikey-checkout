@@ -22,7 +22,7 @@ body {
 }
 
 .plan {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 10px;
   width: 100%;
@@ -72,4 +72,19 @@ body {
 
 .justify-between {
   justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #paymentBrick_container {
+    order: 2;
+  }
+
+  .plan {
+    order: 1;
+  }
 }
