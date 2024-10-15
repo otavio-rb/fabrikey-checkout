@@ -31,13 +31,10 @@ const page = {
       this.planName = json.response.plan._api_c2_reason;
 
       document.querySelector(".plan").style.display = "flex";
-      
+
       document.querySelector("#plan-reason").innerText = this.planName;
       document.querySelector("#plan-subtotal").innerText = plan["_api_c2_auto_recurring.transaction_amount"].toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
       document.querySelector("#plan-total").innerText = plan["_api_c2_auto_recurring.transaction_amount"].toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
-
-
-      console.log(json.response.plan)
 
     } catch (error) {
       console.error(error);
@@ -109,7 +106,7 @@ const page = {
             const data = await response.json();
 
             if (!response.ok || data.response.is_error) {
-              throw new Error(`Erro na requisição: ${response.statusText} `);
+              throw new Error(`Erro na requisição: ${data.response.error_body} `);
             }
 
             console.log(data.response.is_error)
@@ -118,7 +115,7 @@ const page = {
             window.location.href = `https://fk-3146878.bubbleapps.io/version-test/assinatura_sucesso?preapproval_plan_id=${this.preapproval_plan_id}`;
 
           } catch (error) {
-            toast.error("Erro ao fazer a compra. Entre em contato com o suporte.");
+            toast.error("Erro ao fazer a compra. Entre em contato com o suporte." + error);
             console.error(error);
 
             setTimeout(() => {
