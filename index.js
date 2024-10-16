@@ -81,7 +81,6 @@ const page = {
         },
         paymentMethods: {
           creditCard: "all",
-          atm: "all",
           maxInstallments: 1
         },
       },
@@ -90,7 +89,6 @@ const page = {
 
         },
         onSubmit: async ({ selectedPaymentMethod, formData }) => {
-          console.log(formData.token)
           try {
             const response = await fetch("https://fk-3146878.bubbleapps.io/version-test/api/1.1/wf/criar-assinatura/", {
               method: "POST",
@@ -112,14 +110,14 @@ const page = {
               throw new Error(`Erro na requisição: ${data.response.error_body} `);
             }
 
-            // window.location.href = `https://fk-3146878.bubbleapps.io/version-test/assinatura_sucesso?preapproval_plan_id=${this.preapproval_plan_id}`;
+            window.location.href = `https://fk-3146878.bubbleapps.io/version-test/assinatura_sucesso?preapproval_plan_id=${this.preapproval_plan_id}`;
 
           } catch (error) {
             toast.error("Erro ao fazer a compra. Entre em contato com o suporte." + error);
             console.error(error);
 
             setTimeout(() => {
-              // window.location.href = 'https://fk-3146878.bubbleapps.io/version-test';
+              window.location.href = 'https://fk-3146878.bubbleapps.io/version-test';
             }, 11000)
           }
         },
