@@ -1,6 +1,6 @@
 import Toast from "./classes/Toast/Toast.js";
 
-const mp = new MercadoPago('APP_USR-12d59ee5-ac63-44b5-945c-80b64b07bfaf', {
+const mp = new MercadoPago('APP_USR-8d0de100-d63b-42e4-9b6c-3e3c318fdaa3', {
   locale: 'pt'
 });
 const bricksBuilder = mp.bricks();
@@ -90,6 +90,7 @@ const page = {
 
         },
         onSubmit: async ({ selectedPaymentMethod, formData }) => {
+          console.log(formData.token)
           try {
             const response = await fetch("https://fk-3146878.bubbleapps.io/version-test/api/1.1/wf/criar-assinatura/", {
               method: "POST",
@@ -106,20 +107,19 @@ const page = {
             const data = await response.json();
 
             if (!response.ok || data.response.is_error) {
+              console.log(data);
+
               throw new Error(`Erro na requisição: ${data.response.error_body} `);
             }
 
-            console.log(data.response.is_error)
-            console.log(data);
-
-            window.location.href = `https://fk-3146878.bubbleapps.io/version-test/assinatura_sucesso?preapproval_plan_id=${this.preapproval_plan_id}`;
+            // window.location.href = `https://fk-3146878.bubbleapps.io/version-test/assinatura_sucesso?preapproval_plan_id=${this.preapproval_plan_id}`;
 
           } catch (error) {
             toast.error("Erro ao fazer a compra. Entre em contato com o suporte." + error);
             console.error(error);
 
             setTimeout(() => {
-              window.location.href = 'https://fk-3146878.bubbleapps.io/version-test';
+              // window.location.href = 'https://fk-3146878.bubbleapps.io/version-test';
             }, 11000)
           }
         },
