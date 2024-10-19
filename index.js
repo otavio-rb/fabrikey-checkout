@@ -81,6 +81,7 @@ const page = {
         },
         paymentMethods: {
           creditCard: "all",
+          atm: "all",
           maxInstallments: 1
         },
       },
